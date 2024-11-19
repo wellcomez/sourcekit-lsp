@@ -53,6 +53,8 @@ jobs:
         # Add-AppxPackage -Register -DisableDevelopmentMode "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*.appxmanifest"
         winget install --id Microsoft.VisualStudio.2022.Community --exact --force --custom "--add Microsoft.VisualStudio.Component.Windows11SDK.22000 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.VC.Tools.ARM64"
         winget install --id Swift.Toolchain -e
+        dir $env:LocalAppData\Programs\
+        dir $env:LocalAppData\Programs\Swift\
         swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
       shell: pwsh
 
