@@ -24,10 +24,14 @@ jobs:
 
 
     - name: install 
-      run: sudo apt install libsqlite3-dev libncurses5-dev python3
+      run: |
+        sudo apt install libsqlite3-dev libncurses5-dev python3 wget
+        wget https://download.swift.org/swift-6.0.2-release/ubuntu2204/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu22.04.tar.gz
+        tar -xvzf swift-6.0.2-RELEASE-ubuntu22.04.tar.gz
+        export root=$(pwd)/swift-6.0.2-RELEASE-ubuntu22.04
 
     - name: Build
-      run:  swift build -Xcxx -I/usr/lib/swift -Xcxx -I/usr/lib/swift/Block
+      run:  $root/usr/bin/swift build -Xcxx -I$root/usr/lib/swift -Xcxx -I$root/usr/lib/swift/Block
       
       
       
