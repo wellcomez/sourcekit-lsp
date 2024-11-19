@@ -85,6 +85,6 @@ jobs:
       with:
         upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
         asset_path: ./.build/release/sourcekit-lsp
-        asset_name: sourcekit-lsp-macos-amd64
+        asset_name: sourcekit-lsp-mac
         asset_content_type: application/octet-stream
 
