@@ -3,7 +3,7 @@ name: build-windows
 on:
   push:
     branches: [ "dev" ]
-    tags: [ 'v*' ]
+    # tags: [ 'v*' ]
   pull_request:
     branches: [ "dev" ]
 
@@ -52,7 +52,8 @@ jobs:
       run: |
        set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
        swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
-      
+      shell: pwsh
+  
       
     - name: Check if release exists
       id: check_release
