@@ -27,8 +27,9 @@ jobs:
         Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "c:\SwiftForWindows-2.0.exe"
         c:\SwiftForWindows-2.0.exe  /install /passive
         $env:SDKROOT = "$env:LocalAppData\Programs\Swift\Toolchains\6.0.2+Asserts"
+        $env:PATH += ";$env:SDKROOT\usr\bin"
         set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
-        $env:SDKROOT\usr\bin\swift build -Xcc -I$env:SDKROOT\usr\include -Xcc -I$env:SDKROOT\usr\include\Block -c release
+        swift build -Xcc -I$env:SDKROOT\usr\include -Xcc -I$env:SDKROOT\usr\include\Block -c release
       shell: pwsh
     
         
