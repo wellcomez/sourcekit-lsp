@@ -25,6 +25,7 @@ jobs:
     - name: downloadsdk
       run: |
         Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "c:\SwiftForWindows-2.0.exe"
+        dir c:\SwiftForWindows-2.0.exe
         c:\SwiftForWindows-2.0.exe  /install /passive
         dir $env:LocalAppData\Programs\
         $env:SDKROOT = "$env:LocalAppDaAta\Programs\Swift\Toolchains\6.0.2+Asserts"
