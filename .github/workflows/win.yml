@@ -3,7 +3,7 @@ name: build-windows
 on:
   push:
     branches: [ "dev" ]
-    # tags: [ 'v*' ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ "dev" ]
 
