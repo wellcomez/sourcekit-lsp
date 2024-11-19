@@ -25,16 +25,17 @@ jobs:
     - name: downloadsdk
       run: |
         Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "SwiftForWindows-2.0.exe"
+        "./SwiftForWindows-2.0.exe"  /install /passive
       shell: pwsh
     
         
     # - name: Add execute permission
     #   run: chmod +x SwiftForWindows-2.0.exe
     
-    - name: Install Swift for Windows
-      run: |
-          Start-Process -FilePath "./SwiftForWindows-2.0.exe" -ArgumentList "/install /passive" -Wait
-      shell: pwsh
+    # - name: Install Swift for Windows
+    #   run: |
+    #       Start-Process -FilePath "./SwiftForWindows-2.0.exe" -ArgumentList "/install /passive" -Wait
+    #   shell: pwsh
 
 
 
