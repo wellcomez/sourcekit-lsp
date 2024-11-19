@@ -1,4 +1,4 @@
-name: build-linux
+name: build-windows
 
 on:
   push:
@@ -23,12 +23,11 @@ jobs:
       run: git submodule update --init --recursive
 
 
-    - name: install 
-      run: sudo apt install libsqlite3-dev libncurses5-dev python3
 
     - name: Build
-      run:  swift build -Xcxx -I/usr/lib/swift -Xcxx -I/usr/lib/swift/Block
-      
+      run: |
+       set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
+       swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block 
       
       
     - name: Check if release exists
@@ -97,7 +96,7 @@ jobs:
       with:
         upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
         asset_path: ./.build/release/sourcekit-lsp
-        asset_name: sourcekit-lsp-amd64-linux
+        asset_name: sourcekit-lsp-amd64-windows
         asset_content_type: application/octet-stream
 
 
