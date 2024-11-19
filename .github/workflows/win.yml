@@ -22,18 +22,18 @@ jobs:
     - name: pull
       run: git submodule update --init --recursive
 
-    - name: downloadsdk
-      run: |
-        Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "c:\SwiftForWindows-2.0.exe"
-        dir c:\SwiftForWindows-2.0.exe
-        c:\SwiftForWindows-2.0.exe  /install /passive
-        dir $env:LocalAppData\Programs\
-        $env:SDKROOT = "$env:LocalAppDaAta\Programs\Swift\Toolchains\6.0.2+Asserts"
-        dir $env:SDKROOT
-        $env:PATH += ";$env:SDKROOT\usr\bin"
-        set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
-        swift build -Xcc -I$env:SDKROOT\usr\include -Xcc -I$env:SDKROOT\usr\include\Block -c release
-      shell: pwsh
+    # - name: downloadsdk
+    #   run: |
+    #     Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "c:\SwiftForWindows-2.0.exe"
+    #     dir c:\SwiftForWindows-2.0.exe
+    #     c:\SwiftForWindows-2.0.exe  /install /passive
+    #     dir $env:LocalAppData\Programs\
+    #     $env:SDKROOT = "$env:LocalAppDaAta\Programs\Swift\Toolchains\6.0.2+Asserts"
+    #     dir $env:SDKROOT
+    #     $env:PATH += ";$env:SDKROOT\usr\bin"
+    #     set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
+    #     swift build -Xcc -I$env:SDKROOT\usr\include -Xcc -I$env:SDKROOT\usr\include\Block -c release
+    #   shell: pwsh
     
         
     # - name: Add execute permission
@@ -44,15 +44,17 @@ jobs:
     #       Start-Process -FilePath "./SwiftForWindows-2.0.exe" -ArgumentList "/install /passive" -Wait
     #   shell: pwsh
 
+    - name: Insta ll winget
+      uses: Cyberboss/install-winget@v1
 
-
-    # - name: Install Winget
-    #   run: |
-    #     Import-Module Appx  # 显式导入 Appx 模块
-    #     Add-AppxPackage -Register -DisableDevelopmentMode "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*.appxmanifest"
-    #     winget install --id Microsoft.VisualStudio.2022.Community --exact --force --custom "--add Microsoft.VisualStudio.Component.Windows11SDK.22000 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.VC.Tools.ARM64"
-    #     winget install --id Swift.Toolchain -e
-    #   shell: pwsh
+    - name: Install Winget
+      run: |
+        # Import-Module Appx  # 显式导入 Appx 模块
+        # Add-AppxPackage -Register -DisableDevelopmentMode "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*.appxmanifest"
+        winget install --id Microsoft.VisualStudio.2022.Community --exact --force --custom "--add Microsoft.VisualStudio.Component.Windows11SDK.22000 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.VC.Tools.ARM64"
+        winget install --id Swift.Toolchain -e
+        swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
+      shell: pwsh
 
 
     # - name: Build
