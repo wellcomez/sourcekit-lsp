@@ -22,7 +22,15 @@ jobs:
     - name: pull
       run: git submodule update --init --recursive
 
-
+    - name: downloadsdk
+      run: |
+        Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "SwiftForWindows-2.0.exe"
+      shell: pwsh
+    
+    - name: Install Swift for Windows
+      run: |
+          Start-Process -FilePath "SwiftForWindows-2.0.exe" -ArgumentList "/S" -Wait
+      shell: pwsh
 
     - name: Build
       run: |
