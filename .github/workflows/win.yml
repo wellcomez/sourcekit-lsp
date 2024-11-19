@@ -33,7 +33,7 @@ jobs:
     
     - name: Install Swift for Windows
       run: |
-          Start-Process -FilePath "./SwiftForWindows-2.0.exe" -ArgumentList "/S" -Wait
+          Start-Process -FilePath "./SwiftForWindows-2.0.exe" -ArgumentList "/install /passive" -Wait
       shell: pwsh
 
 
