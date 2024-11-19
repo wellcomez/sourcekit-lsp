@@ -46,7 +46,7 @@ jobs:
     - name: Build
       run: |
        set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
-       swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block 
+       swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
       
       
     - name: Check if release exists

@@ -32,7 +32,7 @@ jobs:
     - name: Build
       run:  |
         export root=$(pwd)/swift-6.0.2-RELEASE-ubuntu22.04
-        $root/usr/bin/swift build -Xcxx -I$root/usr/lib/swift -Xcxx -I$root/usr/lib/swift/Block
+        $root/usr/bin/swift build -Xcxx -I$root/usr/lib/swift -Xcxx -I$root/usr/lib/swift/Block -c release
       
       
       
