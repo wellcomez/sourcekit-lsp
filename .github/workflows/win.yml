@@ -26,6 +26,8 @@ jobs:
       run: |
         Invoke-WebRequest -Uri "https://github.com/SwiftForWindows/SwiftForWindows/releases/download/v2.0/SwiftForWindows-2.0.exe" -OutFile "c:\SwiftForWindows-2.0.exe"
         c:\SwiftForWindows-2.0.exe  /install /passive
+        set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
+        swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
       shell: pwsh
     
         
@@ -48,11 +50,11 @@ jobs:
     #   shell: pwsh
 
 
-    - name: Build
-      run: |
-       set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
-       swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
-      shell: pwsh
+    # - name: Build
+    #   run: |
+    #    set SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY=1
+    #    swift build -Xcc -I%SDKROOT%\usr\include -Xcc -I%SDKROOT%\usr\include\Block  -c release
+    #   shell: pwsh
   
       
     - name: Check if release exists
